@@ -8,23 +8,12 @@ import {
 } from '@material-ui/core';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Player, Team } from '@raptors/api-interfaces';
-import { makeStyles } from '@material-ui/core/styles';
 import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-const useStyles = makeStyles({
-  root: {
-    background: '#c41141',
-    border: 0,
-    margin: 0
-  },
-});
-
 export function Main() {
-
-
 
   const [players, setPlayers] = useState<Player[]>([])
 
