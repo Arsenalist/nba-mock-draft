@@ -7,7 +7,7 @@ import {
   TextField
 } from '@material-ui/core';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { Player, Team } from '@raptors/api-interfaces';
+import { Player } from '@raptors/api-interfaces';
 import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
 import { ArrowDropUp } from '@material-ui/icons';
@@ -23,7 +23,7 @@ export function Main() {
     const protocol = window.location.protocol;
     const domain = window.location.hostname;
     const port = window.location.port;
-    return `${protocol}://${domain}:${port ? port : ''}`;
+    return `${protocol}://${domain}${port ? `:${port}` : ''}`;
   }
 
   useEffect(() => {
