@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Box, List, ListItem } from '@material-ui/core';
 import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
+import { Link } from 'react-router-dom';
 
 export function ViewEntry() {
   const { id } = useParams<{id: string}>();
@@ -15,7 +16,13 @@ export function ViewEntry() {
   }, []);
 
   return <>
-    <Box display="flex" flexDirection="row">
+    <Box p={1} m={1}>
+      <p>
+        <Link to={'/'}>Make another mock draft.</Link>
+      </p>
+    </Box>
+
+    <Box display="flex" flexDirection="row" p={1} m={1}>
       <Box>
         <DraftOrder/>
       </Box>

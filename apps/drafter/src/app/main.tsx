@@ -12,12 +12,14 @@ import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
 import { ArrowDropUp } from '@material-ui/icons';
 import { ArrowDropDown } from '@material-ui/icons';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 export function Main() {
 
   const [players, setPlayers] = useState<Player[]>([])
 
   const [hash, setHash] = useState("")
+  const [copied, setCopied] = useState(false)
 
   const baseUrl = () => {
     const protocol = window.location.protocol;
@@ -72,35 +74,38 @@ export function Main() {
 
   return (
     <>
-      <Box display="flex" flexDirection="row" p={1} m={1} >
+      <Box display="flex" flexDirection="column" p={1} m={1} >
         <Box p={1}>
           <p>
             Drag and drop the players or use the arrows provided. Then hit save.
           </p>
-
           <Button variant="contained" color="primary" onClick={save}>Save</Button>
         </Box>
         <Box p={1}>
           {hash &&
-            <TextField
-              onFocus={(event) => event.target.select()}
-              style={{width: '400px'}}
-              value={hash}
-              id="standard-read-only-input"
-              label="Shareable Link"
-              InputProps={{
-                readOnly: true,
-              }}
+          <TextField
+            onFocus={(event) => event.target.select()}
+            style={{fontSize: '0.1em'}}
+            value={hash}
+            id="standard-read-only-input"
+            label="Shareable Link"
+            InputProps={{
+              readOnly: true,
+            }}
             />
           }
         </Box>
+        <Box p={1}>
+          {hash && <CopyToClipboard text={hash} onCopy={() => setCopied(true)}>
+            <a href="#">Copy</a>
+          </CopyToClipboard>} {copied && <div>Copied to clipboard!</div>}
+        </Box>
       </Box>
-
-      <Box display="flex" flexDirection="row">
-        <Box>
+      <Box display="flex" flexDirection="row" p={1} m={1} >
+        <Box p={1}>
           <DraftOrder/>
         </Box>
-        <Box>
+        <Box p={1}>
           <div>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId="players">
