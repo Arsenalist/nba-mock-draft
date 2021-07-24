@@ -9,7 +9,7 @@
     "build:api": "nx build api",
     "serve:drafter": "nx serve drafter",
     "build": "nx build",
-    "build:drafter:prod": "node node_modules/nx/bin/nx build drafter --configuration=production --prod",
+    "build:drafter:prod": "node node_modules/nx/bin/nx build drafter --configuration=production",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
