@@ -6,9 +6,6 @@ import { Box, List, ListItem } from '@material-ui/core';
 import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
 import { Link } from 'react-router-dom';
-import Helmet from 'react-helmet';
-
-
 
 export function ViewEntry() {
   const { id } = useParams<{id: string}>();
@@ -19,9 +16,6 @@ export function ViewEntry() {
   }, []);
 
   return <>
-    <Helmet>
-      <meta name="og:image" content="https://i.imgur.com/fmlXMxb.png" />
-    </Helmet>
     <Box p={1} m={1}>
       <p>
         <Link to={'/'}>Make another mock draft.</Link>
