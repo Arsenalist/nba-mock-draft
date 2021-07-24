@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://nbamockdraftapi.raptorsrepublic.com'
+  apiBaseUrl: 'https://nbamockdraftapi.raptorsrepublic.com'
 };
