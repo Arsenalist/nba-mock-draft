@@ -7,7 +7,7 @@
     "start": "nx serve",
     "serve:api": "nx serve api",
     "serve:drafter": "nx serve drafter",
-    "build": "nx build",
+    "build": "nx build --prod",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
