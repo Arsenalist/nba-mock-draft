@@ -6,6 +6,7 @@
     "nx": "nx",
     "start": "nx serve",
     "serve:api": "nx serve api",
+    "build:api": "nx build api",
     "serve:drafter": "nx serve drafter",
     "build": "nx build --prod",
     "test": "nx test",
