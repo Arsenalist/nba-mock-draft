@@ -13,6 +13,7 @@ import { PlayerInfo } from './PlayerInfo';
 import { ArrowDropUp } from '@material-ui/icons';
 import { ArrowDropDown } from '@material-ui/icons';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 export function Main() {
 
@@ -34,7 +35,7 @@ export function Main() {
 
   const save = () => {
     axios.post('/api/save', players).then(response => {
-      setHash(`${baseUrl()}/entry/${response.data.hash}`)
+      setHash(`${baseUrl()}/e/${response.data.hash}`)
     });
   }
 
@@ -81,11 +82,9 @@ export function Main() {
           </p>
           <Button variant="contained" color="primary" onClick={save}>Save</Button>
         </Box>
-        <Box p={1}>
-          {hash &&
+        {hash &&<Box p={1}>
           <TextField
             onFocus={(event) => event.target.select()}
-            style={{fontSize: '0.1em'}}
             value={hash}
             id="standard-read-only-input"
             label="Shareable Link"
@@ -93,15 +92,27 @@ export function Main() {
               readOnly: true,
             }}
             />
-          }
-        </Box>
-        <Box p={1}>
-          {hash && <CopyToClipboard text={hash} onCopy={() => setCopied(true)}>
+        </Box>}
+        {hash && <Box p={1}>
+          <CopyToClipboard text={hash} onCopy={() => setCopied(true)}>
             <a href="#">Copy</a>
-          </CopyToClipboard>} {copied && <div>Copied to clipboard!</div>}
-        </Box>
+          </CopyToClipboard> {copied && <div>Copied to clipboard!</div>}
+        </Box>}
+        {hash && <Box p={1} alignItems={"center"}>
+            <Box alignItems={"center"}>
+              Share:
+            </Box>
+            <Box alignItems={"center"}>
+              <TwitterShareButton
+                url={hash}
+                hashtags={["NBADraft"]}
+                title="My mock draft">
+                <TwitterIcon size={32} round  />
+              </TwitterShareButton>
+            </Box>
+          </Box>}
       </Box>
-      <Box display="flex" flexDirection="row" p={1} m={1} >
+        <Box display="flex" flexDirection="row" >
         <Box p={1}>
           <DraftOrder/>
         </Box>
@@ -148,8 +159,6 @@ export function Main() {
                     </List>
                     {provided.placeholder}
                   </div>
-
-
                 )}
               </Droppable>
             </DragDropContext>
@@ -159,4 +168,3 @@ export function Main() {
     </>
   );
 };
-

@@ -22,7 +22,7 @@ export const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={Main}/>
-          <Route path="/entry/:id" component={ViewEntry}/>
+          <Route path="/e/:id" component={ViewEntry}/>
         </Switch>
       </Router>
     </>
