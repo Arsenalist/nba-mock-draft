@@ -5,8 +5,17 @@ import { players } from './data/players';
 import { openMongo } from './db/mongo';
 import { EntryModel } from './db/entries';
 const app = express();
+const cors = require('cors')
+
 app.use(express.json());
 app.use(express.urlencoded());
+
+app.use(cors({
+  origin: function (origin, callback) {
+    callback(null, ['http://localhost:4200', 'https://mockdraft.raptorsrepublic.com'])
+  }
+}))
+
 
 openMongo()
 

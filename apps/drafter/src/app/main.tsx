@@ -10,8 +10,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Player, Team } from '@raptors/api-interfaces';
 import { DraftOrder } from './draft-order';
 import { PlayerInfo } from './PlayerInfo';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { ArrowDropUp } from '@material-ui/icons';
+import { ArrowDropDown } from '@material-ui/icons';
 
 export function Main() {
 
@@ -124,14 +124,14 @@ export function Main() {
                                   aria-label="open drawer"
                                   edge="start"
                                 >
-                                  <ArrowDropDownIcon data-index={index}/>
+                                  <ArrowDropDown data-index={index}/>
                                 </IconButton>
                                 <IconButton
                                   onClick={moveUp}
                                   aria-label="open drawer"
                                   edge="start"
                                 >
-                                  <ArrowDropUpIcon data-index={index}/>
+                                  <ArrowDropUp data-index={index}/>
                                 </IconButton>
 
                               </ListItem>
