@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from '@raptors/api-interfaces';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Main } from './main';
+import { ViewEntry } from './view-entry';
+import { AppBar, CssBaseline, Toolbar } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import { Auth } from './auth';
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to drafter!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-          alt="Nx - Smart, Extensible Build Framework"
-        />
-      </div>
-      <div>{m.message}</div>
+      <Auth/>
+      <CssBaseline/>
+      <AppBar position="static" style={{ margin: 0 }}>
+        <Toolbar>
+          <Typography variant="h6">
+            Mock Draft
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Main}/>
+          <Route path="/entry/:id" component={ViewEntry}/>
+        </Switch>
+      </Router>
     </>
   );
 };

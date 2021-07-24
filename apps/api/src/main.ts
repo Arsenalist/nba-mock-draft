@@ -1,12 +1,39 @@
 import * as express from 'express';
-import { Message } from '@raptors/api-interfaces';
-
+import { draftOrder } from './data/draft-order';
+import { teams } from './data/teams';
+import { players } from './data/players';
+import { openMongo } from './db/mongo';
+import { EntryModel } from './db/entries';
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded());
 
-const greeting: Message = { message: 'Welcome to api!' };
+openMongo()
 
-app.get('/api', (req, res) => {
-  res.send(greeting);
+app.post('/api/save', async(req, res) => {
+  const entry = {
+    players: req.body
+  }
+  const model = await EntryModel.create(entry)
+  res.send({hash: model.id})
+});
+
+
+app.get('/api/players', (req, res) => {
+  res.send(players);
+});
+
+app.get('/api/entry/:id', async (req, res) => {
+  res.send(await EntryModel.findById(req.params.id));
+});
+
+
+app.get('/api/draft-order', (req, res) => {
+  res.send(draftOrder);
+});
+
+app.get('/api/teams', (req, res) => {
+  res.send(teams);
 });
 
 const port = process.env.port || 3333;

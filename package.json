@@ -5,6 +5,8 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "serve:api": "nx serve api",
+    "serve:drafter": "nx serve drafter",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -27,15 +29,23 @@
   },
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
+    "@types/react-router-dom": "^5.1.8",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",
     "express": "4.17.1",
+    "mongoose": "^5.13.3",
     "react": "17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "17.0.2",
     "react-is": "17.0.2",
+    "react-router-dom": "^5.2.0",
     "regenerator-runtime": "0.13.7",
     "styled-components": "5.2.1",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
@@ -58,6 +68,7 @@
     "@types/jest": "26.0.24",
     "@types/node": "14.14.33",
     "@types/react": "17.0.3",
+    "@types/react-beautiful-dnd": "^13.1.1",
     "@types/react-dom": "17.0.3",
     "@types/react-is": "17.0.0",
     "@types/styled-components": "5.1.9",
