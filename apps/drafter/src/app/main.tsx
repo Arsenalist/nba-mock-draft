@@ -51,18 +51,19 @@ export function Main() {
   }
 
   const moveUp = (e: any) => {
-    const index: number = e.target.getAttribute('data-index')
+    const index = parseInt(e.target.getAttribute('data-index'))
+    console.log("moveUp: index is ", index)
     const items = reorder(players, index, index-1);
     setPlayers(items)
   }
   const moveDown = (e: any) => {
-    const index = e.target.getAttribute('data-index')
+    const index = parseInt(e.target.getAttribute('data-index'))
+    console.log("moveDown: index is ", index)
     const items = reorder(players, index, index+1);
     setPlayers(items)
   }
 
   const onDragEnd = (result: any) => {
-    console.log(result)
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -77,6 +78,7 @@ export function Main() {
   }
 
   const reorder = (list: Player[], startIndex: number, endIndex: number): Player[] => {
+    console.log("in reorder: ", startIndex, endIndex)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -148,7 +150,7 @@ export function Main() {
                   >
                     <List>
                       {players.map((player, index) => (
-                        <Draggable index={index} key={player.id} draggableId={`player-${player.id}`}>
+                        <Draggable index={index} key={`draggable-${index}`} draggableId={`player-${index}`}>
                           {(provided, snapshot) => (
                             <div
                               ref={provided.innerRef}

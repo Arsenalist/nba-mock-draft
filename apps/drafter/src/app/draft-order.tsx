@@ -20,9 +20,9 @@ export function DraftOrder(props: DraftOrderProps) {
   }, []);
 
   return <List>
-    {draftOrder.map((draftOrderItem) => (
-      <ListItem>
-        <ListItemText
+    {draftOrder.map((draftOrderItem, index) => (
+      <ListItem key={`item-${index}`}>
+        <ListItemText key={`item-text-${index}`}
           secondary={`#${draftOrderItem["order"]}`} primary={`${draftOrderItem["team"]}`}
         />
       </ListItem>
