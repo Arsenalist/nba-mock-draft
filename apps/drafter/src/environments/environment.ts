@@ -3,5 +3,5 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://nbamockdraftapi.raptorsrepublic.com'
+  apiBaseUrl: 'http://localhost:4200'
 };
