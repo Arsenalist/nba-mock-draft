@@ -24,7 +24,7 @@ export function ViewEntry() {
 
     <Box display="flex" flexDirection="row" p={1} m={1}>
       <Box>
-        <DraftOrder/>
+        {entry && <DraftOrder maxEntries={entry.players.length}/>}
       </Box>
       <Box>
         <List>

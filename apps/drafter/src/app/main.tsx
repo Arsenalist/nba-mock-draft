@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   Box,
-  Button, IconButton,
+  Button, ButtonGroup, IconButton,
   List, ListItem,
   TextField
 } from '@material-ui/core';
@@ -18,7 +18,6 @@ import { TwitterIcon, TwitterShareButton } from 'react-share';
 export function Main() {
 
   const [players, setPlayers] = useState<Player[]>([])
-
   const [hash, setHash] = useState("")
   const [copied, setCopied] = useState(false)
 
@@ -33,10 +32,22 @@ export function Main() {
     axios.get('/api/players').then(response => setPlayers(response.data));
   }, []);
 
-  const save = () => {
+  const save = (players: Player[]) => {
     axios.post('/api/save', players).then(response => {
       setHash(`${baseUrl()}/e/${response.data.hash}`)
     });
+  }
+
+  const saveLottery = () => {
+    save(Array.from(players).slice(0, 14))
+  }
+
+  const saveFirstRound = () => {
+    save(Array.from(players).slice(0, 30))
+  }
+
+  const saveAll = () => {
+    save(players)
   }
 
   const moveUp = (e: any) => {
@@ -80,7 +91,11 @@ export function Main() {
           <p>
             Drag and drop the players or use the arrows provided. Then hit save.
           </p>
-          <Button variant="contained" color="primary" onClick={save}>Save</Button>
+          <ButtonGroup variant="outlined" color="primary" aria-label="contained primary button group">
+            <Button  onClick={saveLottery}>Save Lottery</Button>
+            <Button   onClick={saveFirstRound}>Save First Round</Button>
+            <Button  onClick={saveAll}>Save All</Button>
+          </ButtonGroup>
         </Box>
         {hash &&<Box p={1}>
           <TextField
@@ -93,22 +108,28 @@ export function Main() {
             }}
             />
         </Box>}
+
         {hash && <Box p={1}>
           <CopyToClipboard text={hash} onCopy={() => setCopied(true)}>
             <a href="#">Copy</a>
           </CopyToClipboard> {copied && <div>Copied to clipboard!</div>}
         </Box>}
+
         {hash && <Box p={1} alignItems={"center"}>
             <Box alignItems={"center"}>
               Share:
             </Box>
             <Box alignItems={"center"}>
+
+
               <TwitterShareButton
                 url={hash}
                 hashtags={["NBADraft"]}
                 title="My mock draft">
                 <TwitterIcon size={32} round  />
               </TwitterShareButton>
+
+
             </Box>
           </Box>}
       </Box>

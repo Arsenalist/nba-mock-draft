@@ -5,14 +5,16 @@ import { ViewEntry } from './view-entry';
 import { AppBar, CssBaseline, Toolbar } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Auth } from './auth';
-import Helmet from 'react-helmet';
+import {Helmet} from 'react-helmet';
 export const App = () => {
 
   return (
     <>
+
       <Helmet>
         <meta name="og:image" content="https://i.imgur.com/fmlXMxb.png" />
       </Helmet>
+
       <Auth/>
       <CssBaseline/>
       <AppBar position="static" style={{ margin: 0 }}>
