@@ -52,13 +52,11 @@ export function Main() {
 
   const moveUp = (e: any) => {
     const index = parseInt(e.target.getAttribute('data-index'))
-    console.log("moveUp: index is ", index)
     const items = reorder(players, index, index-1);
     setPlayers(items)
   }
   const moveDown = (e: any) => {
     const index = parseInt(e.target.getAttribute('data-index'))
-    console.log("moveDown: index is ", index)
     const items = reorder(players, index, index+1);
     setPlayers(items)
   }
@@ -78,7 +76,6 @@ export function Main() {
   }
 
   const reorder = (list: Player[], startIndex: number, endIndex: number): Player[] => {
-    console.log("in reorder: ", startIndex, endIndex)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
