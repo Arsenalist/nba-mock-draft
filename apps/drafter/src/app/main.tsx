@@ -38,6 +38,10 @@ export function Main() {
     });
   }
 
+  const saveTop10 = () => {
+    save(Array.from(players).slice(0, 10))
+  }
+
   const saveLottery = () => {
     save(Array.from(players).slice(0, 14))
   }
@@ -91,9 +95,10 @@ export function Main() {
             Drag and drop the players or use the arrows provided. Then hit save.
           </p>
           <ButtonGroup variant="outlined" color="primary" aria-label="contained primary button group">
-            <Button  onClick={saveLottery}>Save Lottery</Button>
-            <Button   onClick={saveFirstRound}>Save First Round</Button>
-            <Button  onClick={saveAll}>Save All</Button>
+            <Button  onClick={saveTop10}>Save Top 10 Picks</Button>
+            <Button  onClick={saveLottery}>Save Lottery Picks</Button>
+            <Button  onClick={saveFirstRound}>Save First Round Picks</Button>
+            <Button  onClick={saveAll}>Save All Picks</Button>
           </ButtonGroup>
         </Box>
         {hash &&<Box p={1}>
